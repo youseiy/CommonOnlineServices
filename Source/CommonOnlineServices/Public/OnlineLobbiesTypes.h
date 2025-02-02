@@ -7,6 +7,11 @@
 #include "Online/Lobbies.h"
 #include "OnlineLobbiesTypes.generated.h"
 
+
+DECLARE_LOG_CATEGORY_EXTERN(LogCommonOnlineServicesSubsystem, Log, All);
+
+
+
 /*
 struct FLobby
 {
@@ -53,7 +58,7 @@ struct FOnlineLobby
 	UPROPERTY(BlueprintReadOnly)
 	TArray<FName> AttributeNamesDebug;
 
-	FOnlineLobby& operator=(const FOnlineLobby& Other) const
+	FOnlineLobby operator=(const FOnlineLobby& Other) const
 	{
 		FOnlineLobby Temp(Other);
 		return Temp;

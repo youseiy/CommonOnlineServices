@@ -13,7 +13,7 @@ UE::Online::FAccountId UCommonOnlineServiceLibrary::GetLocalAccountIdFromPlayerC
 {
 	if (!Context)
 	{
-		return UE::Online::FAccountId();
+		return  UE::Online::FAccountId();
 	}
 	UWorld* World=Context->GetWorld();
 	

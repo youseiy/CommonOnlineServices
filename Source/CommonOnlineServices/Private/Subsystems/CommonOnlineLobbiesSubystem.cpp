@@ -11,6 +11,8 @@ void UCommonOnlineLobbiesSubsystem::Initialize(FSubsystemCollectionBase& Collect
 {
 	Super::Initialize(Collection);
 	
+	Collection.InitializeDependency<UCommonOnlineServicesSubsystem>();
+	
 	LobbiesInterface=GetGameInstance()->GetSubsystem<UCommonOnlineServicesSubsystem>()->GetLobbiesPtr();
 	
 	ensureMsgf(LobbiesInterface,TEXT("LobbiesInterface not valid on Auth Subsystem"));

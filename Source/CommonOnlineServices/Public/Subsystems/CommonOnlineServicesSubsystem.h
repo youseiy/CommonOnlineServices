@@ -7,6 +7,7 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "CommonOnlineServicesSubsystem.generated.h"
 
+
 namespace UE::Online
 {
 	struct FAccountInfo;
@@ -33,6 +34,7 @@ protected:
 
 	virtual void Deinitialize() override;
 private:
+	// If you want to access the ptrs, use the related subsystem to access
 	UE::Online::IAuthPtr GetAuthPtr();
 	UE::Online::ISessionsPtr GetSessionsPtr();
 	UE::Online::ILobbiesPtr GetLobbiesPtr();

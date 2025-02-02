@@ -2,3 +2,5 @@
 
 
 #include "OnlineLobbiesTypes.h"
+
+DEFINE_LOG_CATEGORY(LogCommonOnlineServicesSubsystem)

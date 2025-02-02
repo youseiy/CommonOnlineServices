@@ -12,12 +12,12 @@ UE::Online::IAuthPtr UCommonOnlineAuthSubsystem::GetAuthPtr()
 void UCommonOnlineAuthSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+	Collection.InitializeDependency<UCommonOnlineServicesSubsystem>();
 
-
+	
 	AuthPtr=GetGameInstance()->GetSubsystem<UCommonOnlineServicesSubsystem>()->GetAuthPtr();
 	
 	ensureMsgf(AuthPtr,TEXT("AuthPtr not valid on Auth Subsystem"));
-	
 }
 
 void UCommonOnlineAuthSubsystem::Deinitialize()

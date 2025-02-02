@@ -3,6 +3,8 @@
 
 #include "Subsystems/CommonOnlineServicesSubsystem.h"
 
+#include "OnlineLobbiesTypes.h"
+#include "Logging/StructuredLog.h"
 #include "Online/OnlineServicesEngineUtils.h"
 
 
@@ -11,10 +13,14 @@
 void UCommonOnlineServicesSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-
-	OnlineServices = UE::Online::GetServices(UE::Online::EOnlineServices::Epic);
 	
-	ensureMsgf(OnlineServices,TEXT("OnlineServices not initialized."));
+#if WITH_EDITOR
+	OnlineServices = UE::Online::GetServices(UE::Online::EOnlineServices::Null);
+#else
+	OnlineServices = UE::Online::GetServices(UE::Online::EOnlineServices::Default);
+#endif
+
+	UE_LOGFMT(LogCommonOnlineServicesSubsystem,Display,"OnlineServicesSubsystem {ServiceName} initialized",OnlineServices->GetInstanceName());
 	
 	if (OnlineServices)
 	{
@@ -24,8 +30,6 @@ void UCommonOnlineServicesSubsystem::Initialize(FSubsystemCollectionBase& Collec
 		SocialInterface= OnlineServices->GetSocialInterface();
 		ConnectivityInterface= OnlineServices->GetConnectivityInterface();
 	}
-	
-	
 }
 
 void UCommonOnlineServicesSubsystem::Deinitialize()
